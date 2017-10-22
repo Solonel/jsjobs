@@ -1,0 +1,29 @@
+<div *ngIf="!isAuthenticated" class="panel">
+
+
+  <div class="form-group col-sm-6">
+
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+      <input type="email" required class="login-input" ngModel name="email" placeholder="email">
+      <input type="password" ngModel name="password" class="login-input" placeholder="Mot de passe" required>
+      <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+    </form>
+  </div>
+
+  <div *ngIf="errorMessage!=''" class="form-group col-sm-6 alert alert-danger">
+    {{errorMessage}}
+  </div>
+</div>
+
+
+
+<div *ngIf="isAuthenticated" class="panel">
+
+  {{welcomeMessage}}
+  <hr>
+
+  <pre>
+  {{jbbData | json}}
+</pre>
+
+</div>

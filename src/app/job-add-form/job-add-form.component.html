@@ -1,0 +1,83 @@
+<div class="panel-body" *ngIf="userIsLoggedIn">
+  <form [formGroup]="form" (ngSubmit)="createJob(form.value)">
+    <div class="form-group col-sm-6">
+      <label for="title">Titre</label>
+      <input type="text" name="title" class="form-control" placeholder="Titre de votre annonce" formControlName="title">
+
+      <label for="company">Entreprise</label>
+      <input type="text" name="company" class="form-control" placeholder="Nom de votre entreprise" formControlName="company">
+
+      <label for="city">Ville</label>
+      <input type="text" name="city" class="form-control" placeholder="Ville du poste proposé" formControlName="city">
+
+      <label for="zipcode">Code postal</label>
+      <input type="text" name="zipcode" class="form-control" placeholder="Code postal" formControlName="zipcode">
+    </div>
+    <div class="formgroup col-sm-6">
+      <label for="description">Description</label>
+      <textarea name="description" formControlName="description" cols="30" rows="10"></textarea>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="contract">Type de contrat</label>
+      <select name="contract" formControlName="contract">
+        <option *ngFor="let ct of contractTypes" [value]="ct.value">{{ct.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-12">
+      <label for="salary">salaire</label>
+      <input type="text" name="salary" class="small-text" placeholder="Salaire" formControlName="salary">
+      <select name="currency" formControlName="currency" class="currency">
+        <option *ngFor="let curr of currencies" [value]="curr.value">{{curr.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="experience">Expérience</label>
+      <select name="experience" formControlName="experience">
+        <option *ngFor="let exp of experience" [value]="exp.value">{{exp.name}}</option>
+      </select>
+      <label for="status">Statut</label>
+      <select name="status" formControlName="status">
+        <option *ngFor="let status of statuses" [value]="status.value">{{status.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-12">
+      <label for="area">Déplacements</label>
+
+      <div *ngFor="let area of areas">
+        <input type="radio" [id]='"btn-" + area.value' name="area" [value]="area.value" formControlName="area">
+        <label [for]='"btn-" + area.value'>{{area.name}}</label>
+      </div>
+
+    </div>
+
+
+    <div class="form-group col-sm-12">
+      <label for="startdate">Date de démarrage</label>
+      <input type="date" name="startdate" formControlName="startdate">
+    </div>
+
+
+    <div class="form-group col-sm-12">
+      <button type="submit" class="btn btn-success">Créer l'annonce</button>
+    </div>
+
+  </form>
+</div>
+
+<div class="panel-body" *ngIf="!userIsLoggedIn">
+
+  <h2>Création d'annonce réservé aux inscrits</h2>
+
+  Vous devez être connecté pour créer une annonce.
+  <hr>
+
+  <a href="#" routerLink="/login">Se connecter</a>
+  ou
+  <a href="#" routerLink="/register">Créer un compte</a>
+
+
+</div>

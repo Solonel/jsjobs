@@ -1,0 +1,7 @@
+<div>
+  <form #searchForm="ngForm" (ngSubmit)="searchJobs(searchForm.value)">
+    <input required type="text" ngModel class="search-input" name="term" placeholder="Angular, React, Node ...">
+    <input type="text" ngModel class="search-input" name="place" placeholder="Laval, Rennes ...">
+    <button type="submit" [disabled]="searchForm.invalid" class="btn btn-success">Chercher</button>
+  </form>
+</div>
